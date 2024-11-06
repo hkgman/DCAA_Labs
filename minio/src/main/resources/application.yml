@@ -1,0 +1,7 @@
+server:
+  port: 8081
+minio:
+  access:
+    name: pasha
+    secret: 123456789
+  url: "http://minio:9000"

@@ -1,0 +1,32 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${db_url}
+    username: postgres
+    password: "67626762"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        ddl-auto: validate
+        temp:
+          use_jdbc_metadata_defaults: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/db_changelog-master.yaml
+  doc:
+    swagger-ui:
+      enabled: true
+      version: 3.1.0
+    api-docs:
+      version: openapi.3.1
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example: DEBUG
+  file:
+    name: logs/app.log

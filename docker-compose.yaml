@@ -1,0 +1,125 @@
+version: '3.9'
+
+services:
+  gateway:
+    container_name: gateway
+    build: ./gateway
+    image: gateway
+    ports:
+      - "8072:8072"
+    networks:
+      backend:
+        aliases:
+          - "gateway"
+  db:
+    image: postgres:14.1
+    container_name: test_project
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "Prison"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "67626762"
+    networks:
+      backend:
+        aliases:
+          - "db"
+  prisoners:
+    container_name: prisoners
+    build: ./LabP2
+    image: prisoners
+    expose:
+      - "8080"
+    environment:
+      db_url: jdbc:postgresql://db:5432/Prison
+      db_username: postgres
+      db_password: "67626762"
+
+    networks:
+      backend:
+        aliases:
+          - "prisoners"
+  report:
+    container_name: report
+    build: ./report
+    image: report
+    expose:
+      - "8082"
+    environment:
+      db_url: jdbc:postgresql://db:5432/Prison
+      db_username: postgres
+      db_password: "67626762"
+
+    networks:
+      backend:
+        aliases:
+          - "report"
+
+  minio:
+    container_name: minio
+    image: minio/minio:latest
+    command: server --console-address ":9001" /data
+    depends_on:
+      - report
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: pasha
+      MINIO_ROOT_PASSWORD: 123456789
+    volumes:
+      - /mnt/data:/data
+      - /mnt/config:/root/.minio
+    networks:
+      backend:
+        aliases:
+          - "minio"
+  myminio:
+    container_name: myminio
+    build: ./minio
+    image: myminio
+    depends_on:
+      - minio
+    ports:
+      - "8081:8081"
+    networks:
+      backend:
+        aliases:
+          - "myminio"
+  zookeeper:
+    container_name: zookeper
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - '2181:2181'
+    networks:
+      backend:
+        aliases:
+          - "zookeeper"
+
+  kafka:
+    container_name: kafka
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - '9092:9092'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      backend:
+        aliases:
+          - "kafka"
+networks:
+  backend:
+    driver: bridge
+volumes:
+  minio-storage:
