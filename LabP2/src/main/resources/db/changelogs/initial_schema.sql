@@ -6,3 +6,10 @@ CREATE TABLE Prisoner (
     term INT NOT NULL CHECK (term >= 1),
     article VARCHAR(64) NOT NULL
 );
+
+CREATE TABLE users (
+    id UUID PRIMARY KEY NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    password TEXT NOT NULL,
+    role INT NOT NULL
+);

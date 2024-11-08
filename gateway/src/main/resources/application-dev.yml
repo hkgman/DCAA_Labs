@@ -14,6 +14,19 @@ spring:
           filters:
             - RewritePath=/prisoners/(?<path>.*), /$\{path}
             - RemoveRequestHeader=Cookie,Set-Cookie
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${db_url}
+    username: postgres
+    password: "67626762"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        ddl-auto: validate
+        temp:
+          use_jdbc_metadata_defaults: false
 
 management:
   endpoints:
@@ -27,3 +40,6 @@ logging:
     com.example: DEBUG
   file:
     name: logs/app.log
+
+jwt:
+  secret-key: 2e292e323124377c78255f363165246b6c7d684a7379445f5c3b713962

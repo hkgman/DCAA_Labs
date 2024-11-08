@@ -11,6 +11,10 @@ services:
       backend:
         aliases:
           - "gateway"
+    environment:
+      db_url: jdbc:postgresql://db:5432/Prison
+      db_username: postgres
+      db_password: "67626762"
   db:
     image: postgres:14.1
     container_name: test_project
