@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     @Autowired
     private AuthUtil authUtil;
-    @PostMapping("/sign-up")
-    public ResponseEntity<String> signUp(
+    @PostMapping("/register")
+    public ResponseEntity<String> reg(
             @RequestBody AuthRequest req
     ) {
         return ResponseEntity.ok(authUtil.signUp(req));
     }
-    @PostMapping("/sign-in")
-    public ResponseEntity<String> signIn(
+    @PostMapping("/login")
+    public ResponseEntity<String> login(
             @RequestBody AuthRequest req
     ) {
         return ResponseEntity.ok(authUtil.signIn(req));
