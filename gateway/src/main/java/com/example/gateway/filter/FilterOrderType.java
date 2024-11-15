@@ -2,9 +2,10 @@ package com.example.gateway.filter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Getter
-@AllArgsConstructor
 public enum FilterOrderType {
     PRE(-1),
     POST(0),

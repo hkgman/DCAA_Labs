@@ -29,17 +29,10 @@ spring:
           use_jdbc_metadata_defaults: false
 
 management:
-  endpoints:
-    web:
+  endpoint:
+    end:
       exposure:
         include: "*"
-
-logging:
-  level:
-    org.springframework: INFO
-    com.example: DEBUG
-  file:
-    name: logs/app.log
 
 jwt:
   secret-key: 2e292e323124377c78255f363165246b6c7d684a7379445f5c3b713962

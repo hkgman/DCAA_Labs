@@ -24,8 +24,6 @@ public class CorrelationTrackingPreFilter implements GlobalFilter, Ordered {
         if(hasCorrelationId(header))
         {
             log.info(String.format("Tracked request with correlation id %s",header.get(CORRELATION_ID)));
-            header.set(CORRELATION_ID,"");
-            log.info("clear");
         }
         else{
             request=exchange.getRequest()
