@@ -14,11 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -53,13 +49,13 @@ public class MinioController {
         } else return new ResponseEntity<>("File is already exists", setHeaders(correlationId), HttpStatus.OK);
     }
 
-    @GetMapping("/download")
-    public ResponseEntity<?> get(@RequestPart("file") String file, @RequestHeader(CORRELATION_ID) String correlationId) {
+    @GetMapping("/download/{file}")
+    public ResponseEntity<?> get(@PathVariable("file") String file, @RequestHeader(CORRELATION_ID) String correlationId) {
         log.info(String.format("correlation-id: %s /download", correlationId));
         try {
             byte[] data = minioAdapter.getFile("user1", file);
             ByteArrayResource resource = new ByteArrayResource(data);
-
+            log.info("hihi haha");
             return ResponseEntity
                     .ok()
                     .contentLength(data.length)
@@ -68,6 +64,7 @@ public class MinioController {
                     .header(correlationId)
                     .body(resource);
         } catch (Exception e) {
+            log.error("все упало тут");
             return new ResponseEntity<>("No file", setHeaders(correlationId), HttpStatus.NOT_FOUND);
         }
     }

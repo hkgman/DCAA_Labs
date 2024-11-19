@@ -12,6 +12,7 @@ import io.minio.errors.InvalidResponseException;
 import io.minio.errors.ServerException;
 import io.minio.errors.XmlParserException;
 import io.minio.messages.Bucket;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @Service
+@Slf4j
 public class MinioAdapter {
     private final MinioClient minioClient;
 
@@ -68,6 +70,7 @@ public class MinioAdapter {
                 .build())) {
             return IOUtils.toByteArray(in);
         } catch (Exception e) {
+            log.error(e.getMessage());
             throw new RuntimeException(e.getMessage(), e);
         }
     }

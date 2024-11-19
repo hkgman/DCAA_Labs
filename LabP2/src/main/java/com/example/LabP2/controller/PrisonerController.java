@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequiredArgsConstructor
@@ -67,4 +69,28 @@ public class PrisonerController {
         return new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
     }
 
+
+    @GetMapping("/fileFromMinio/{filename}")
+    public ResponseEntity<byte[]> getFile(@RequestHeader(value = CORID) String corId, @PathVariable String filename) throws ExecutionException, InterruptedException {
+        CompletableFuture<ResponseEntity<byte[]>> future = CompletableFuture.supplyAsync(() -> getFileFromMinio(corId,filename))
+                .exceptionally(ex -> ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new byte[] {}));
+        return future.get();
+    }
+
+
+
+
+    private ResponseEntity<byte[]> getFileFromMinio(String corId,String filename) {
+        String externalServiceUrl = "http://myminio:8081/download/" + filename;
+        HttpHeaders headers = getHeaders(corId, "getFileFromMinio");
+        log.info("чвчв hihi");
+        ResponseEntity<byte[]> response = restTemplate.exchange(
+                externalServiceUrl,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                byte[].class
+        );
+        log.info("hoho hihi");
+        return new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
+    }
 }
