@@ -3,7 +3,7 @@ package org.example;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-public class ParallelMergeSort2 {
+public class ParallelMergeSort {
 
     public SortResult sort(int[] array, int countThread) throws Exception {
         long startTime = System.currentTimeMillis();
@@ -18,15 +18,17 @@ public class ParallelMergeSort2 {
         }
 
         ForkJoinPool pool = new ForkJoinPool(countThread);
-        MergeSortTask task = new MergeSortTask(array);
+        MergeSortTask task = new MergeSortTask(array,countThread);
         return pool.invoke(task);
     }
 
     private static class MergeSortTask extends RecursiveTask<int[]> {
         private final int[] array;
+        private final int countThread;
 
-        public MergeSortTask(int[] array) {
+        public MergeSortTask(int[] array, int countThread) {
             this.array = array;
+            this.countThread = countThread;
         }
 
         @Override
@@ -34,6 +36,9 @@ public class ParallelMergeSort2 {
             if (array.length <= 1) {
                 return array;
             }
+
+            // Печать текущего состояния массива
+
             int mid = array.length / 2;
             int[] left = new int[mid];
             int[] right = new int[array.length - mid];
@@ -41,13 +46,15 @@ public class ParallelMergeSort2 {
             System.arraycopy(array, 0, left, 0, mid);
             System.arraycopy(array, mid, right, 0, array.length - mid);
 
-            // Разделяем задачу на две подзадачи
-            MergeSortTask leftTask = new MergeSortTask(left);
-            MergeSortTask rightTask = new MergeSortTask(right);
+            MergeSortTask leftTask = new MergeSortTask(left, countThread > 1 ? countThread / 2 : 1);
+            MergeSortTask rightTask = new MergeSortTask(right, countThread > 1 ? countThread / 2 : 1);
 
             leftTask.fork();
-            int[] rightSorted = rightTask.compute();
+            rightTask.fork();
+
+            int[] rightSorted = rightTask.join();
             int[] leftSorted = leftTask.join();
+
 
             return merge(leftSorted, rightSorted);
         }
