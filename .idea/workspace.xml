@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1b7b39-f6e4-48e5-88dd-86aa6a98a51b" name="Changes" comment="work lab 7">
+    <list default="true" id="4d1b7b39-f6e4-48e5-88dd-86aa6a98a51b" name="Changes" comment="lab 8 Sort Ready (Need make a lib)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParallelMergeSort/src/main/java/org/example/ParallelMergeSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/MergeSort/src/org/merge/sort/ParallelMergeSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ParallelMergeSort/src/main/java/org/example/SortResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/MergeSort/src/org/merge/sort/SortResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/filter/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/filter/JwtFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,13 +30,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Repos/lab_Voronina&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Repos/lab_Voronina"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Repos\lab_Voronina\gateway\libs" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -112,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732006902689</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="lab 8 Sort Ready (Need make a lib)">
+      <created>1732272363237</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732272363237</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +151,7 @@
     <MESSAGE value="swagger 1" />
     <MESSAGE value="swagger work URAAAA GOIDAAAA GOOOOIDAAAA GOOOOOOAAAAL" />
     <MESSAGE value="work lab 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="work lab 7" />
+    <MESSAGE value="lab 8 Sort Ready (Need make a lib)" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab 8 Sort Ready (Need make a lib)" />
   </component>
 </project>

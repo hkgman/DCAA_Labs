@@ -1,4 +1,4 @@
-package org.example;
+package org.merge.sort;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;

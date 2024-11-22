@@ -1,4 +1,4 @@
-package org.example;
+package org.merge.sort;
 
 public class SortResult {
     public int[] result;

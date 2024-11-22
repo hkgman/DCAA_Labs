@@ -32,7 +32,7 @@ public class JwtFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         final String uri = request.getURI().toString();
-        if (uri.startsWith("/auth") || uri.contains("swagger") || uri.contains("api-docs")) {
+        if (uri.startsWith("/auth") || uri.contains("swagger") || uri.contains("api-docs") || uri.startsWith("/sort")) {
             return chain.filter(exchange);
         }
         if (!request.getHeaders().containsKey("Authorization")) {
