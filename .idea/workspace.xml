@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1b7b39-f6e4-48e5-88dd-86aa6a98a51b" name="Changes" comment="swagger work URAAAA GOIDAAAA GOOOOIDAAAA GOOOOOOAAAAL">
+    <list default="true" id="4d1b7b39-f6e4-48e5-88dd-86aa6a98a51b" name="Changes" comment="work lab 7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LabP2/src/main/java/com/example/LabP2/controller/PrisonerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/LabP2/src/main/java/com/example/LabP2/controller/PrisonerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minio/src/main/java/com/spring/minio/config/MinioAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/minio/src/main/java/com/spring/minio/config/MinioAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minio/src/main/java/com/spring/minio/controller/MinioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/minio/src/main/java/com/spring/minio/controller/MinioController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="lab7" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,7 +30,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Repos/lab_Voronina/LabP2&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/Repos/lab_Voronina&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -108,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731671081544</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="work lab 7">
+      <created>1732006902689</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732006902689</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +134,7 @@
     <MESSAGE value="swagger" />
     <MESSAGE value="swagger 1" />
     <MESSAGE value="swagger work URAAAA GOIDAAAA GOOOOIDAAAA GOOOOOOAAAAL" />
-    <option name="LAST_COMMIT_MESSAGE" value="swagger work URAAAA GOIDAAAA GOOOOIDAAAA GOOOOOOAAAAL" />
+    <MESSAGE value="work lab 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="work lab 7" />
   </component>
 </project>

@@ -1,0 +1,99 @@
+package org.example;
+
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
+
+public class ParallelMergeSort2 {
+
+    public SortResult sort(int[] array, int countThread) throws Exception {
+        long startTime = System.currentTimeMillis();
+        int[] result = parallelMergeSort(array, countThread);
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        return new SortResult(result, elapsedTime);
+    }
+
+    public int[] parallelMergeSort(int[] array, int countThread) throws Exception {
+        if (array.length <= 1 || countThread == 1) {
+            return mergeSort(array);
+        }
+
+        ForkJoinPool pool = new ForkJoinPool(countThread);
+        MergeSortTask task = new MergeSortTask(array);
+        return pool.invoke(task);
+    }
+
+    private static class MergeSortTask extends RecursiveTask<int[]> {
+        private final int[] array;
+
+        public MergeSortTask(int[] array) {
+            this.array = array;
+        }
+
+        @Override
+        protected int[] compute() {
+            if (array.length <= 1) {
+                return array;
+            }
+            int mid = array.length / 2;
+            int[] left = new int[mid];
+            int[] right = new int[array.length - mid];
+
+            System.arraycopy(array, 0, left, 0, mid);
+            System.arraycopy(array, mid, right, 0, array.length - mid);
+
+            // Разделяем задачу на две подзадачи
+            MergeSortTask leftTask = new MergeSortTask(left);
+            MergeSortTask rightTask = new MergeSortTask(right);
+
+            leftTask.fork();
+            int[] rightSorted = rightTask.compute();
+            int[] leftSorted = leftTask.join();
+
+            return merge(leftSorted, rightSorted);
+        }
+    }
+
+    public int[] mergeSort(int[] array) {
+        if (array.length <= 1) {
+            return array;
+        }
+        int mid = array.length / 2;
+        int[] left = new int[mid];
+        int[] right = new int[array.length - mid];
+
+        System.arraycopy(array, 0, left, 0, mid);
+        System.arraycopy(array, mid, right, 0, array.length - mid);
+
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        return merge(left, right);
+    }
+
+    public static int[] merge(int[] left, int[] right) {
+        int i = 0, k = 0, j = 0;
+        int[] result = new int[left.length + right.length];
+        while (i < left.length & j < right.length) {
+            if (left[i] < right[j]) {
+                result[k] = left[i];
+                k++;
+                i++;
+            } else {
+                result[k] = right[j];
+                k++;
+                j++;
+            }
+        }
+        while (i < left.length) {
+            result[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < right.length) {
+            result[k] = right[j];
+            j++;
+            k++;
+        }
+        return result;
+    }
+}
