@@ -83,14 +83,12 @@ public class PrisonerController {
     private ResponseEntity<byte[]> getFileFromMinio(String corId,String filename) {
         String externalServiceUrl = "http://myminio:8081/download/" + filename;
         HttpHeaders headers = getHeaders(corId, "getFileFromMinio");
-        log.info("чвчв hihi");
         ResponseEntity<byte[]> response = restTemplate.exchange(
                 externalServiceUrl,
                 HttpMethod.GET,
                 new HttpEntity<>(headers),
                 byte[].class
         );
-        log.info("hoho hihi");
         return new ResponseEntity<>(response.getBody(), headers, HttpStatus.OK);
     }
 }
